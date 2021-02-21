@@ -5,8 +5,10 @@ import time
 class Arena:
     def __init__(self, length, width):
         self.arena = [""] * length
-        for i in range(0, len(self.arena) - 1):
+        for i in range(0, len(self.arena) - 3):
             self.arena[i] = ['#', '#'] + ['  '] * width + ['#', '#']
+        self.arena[-3] = ['#', '#'] + ['☐ '] * (width - 1) + ['  '] + ['#', '#']
+        self.arena[-2] = ['#', '#'] + ['☐ '] * (width - 1) + ['  '] + ['#', '#']
         self.arena[-1] = ['#'] * (width + 2) * 2
 
     @staticmethod
@@ -19,7 +21,7 @@ class Arena:
 
     def shave_line(self, lenght, width):
         bound = 0
-        for i in range(lenght - 2, 0, -1):
+        for i in range(0, lenght - 1):
             count = self.arena[i].count('☐ ')
             if count == width:
                 if count % 2 == 0:
@@ -39,9 +41,9 @@ class Arena:
                         self.update(0.1)
                         Arena.print(self.arena)
                     bound = i
-        if bound != 0:
-            for i in range(bound, 0, -1):
-                self.arena[i] = copy.deepcopy(self.arena[i - 1])
+            if bound != 0:
+                for i in range(bound, 0, -1):
+                    self.arena[i] = copy.deepcopy(self.arena[i - 1])
 
     def show_block(self, block):
         test = copy.deepcopy(self.arena)
