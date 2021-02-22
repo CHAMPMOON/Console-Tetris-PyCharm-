@@ -5,10 +5,8 @@ import time
 class Arena:
     def __init__(self, length, width):
         self.arena = [""] * length
-        for i in range(0, len(self.arena) - 3):
+        for i in range(0, len(self.arena) - 1):
             self.arena[i] = ['#', '#'] + ['  '] * width + ['#', '#']
-        self.arena[-3] = ['#', '#'] + ['☐ '] * (width - 1) + ['  '] + ['#', '#']
-        self.arena[-2] = ['#', '#'] + ['☐ '] * (width - 1) + ['  '] + ['#', '#']
         self.arena[-1] = ['#'] * (width + 2) * 2
 
     @staticmethod
